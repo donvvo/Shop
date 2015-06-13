@@ -35,3 +35,4 @@ pytz==2015.4
 # Your custom requirements go here
 facebook-sdk==0.4.0
 python-amazon-product-api==0.2.8
+lxml==3.4.4
