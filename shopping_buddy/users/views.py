@@ -9,11 +9,13 @@ from allauth.account.views import LoginView
 
 from .forms import UserForm
 from .models import User
+from .utils import get_facebook_friends
 
 
 class UserLoginView(LoginView):
     def form_valid(self, form):
         print 'Login hook'
+        get_facebook_friends
         return super(UserLoginView, self).form_valid(form)
 
 
