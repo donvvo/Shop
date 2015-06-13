@@ -1,4 +1,5 @@
 import facebook
+from wishlist.models import WishList
 
 
 def get_facebook_friends(self):
@@ -13,3 +14,11 @@ def get_facebook_friends(self):
 
     for friend in friends['data']:
         print friend
+
+
+def get_friends_wishlist(self):
+    wishlists = WishList.objects.filter(user__in=self.friends)
+    wishlist_combined = ""
+    for wishlist in wishlists:
+        wishlist_combined += wishlist.items
+    return wishlist_combined
