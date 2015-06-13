@@ -99,7 +99,12 @@ MANAGERS = ADMINS
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
 DATABASES = {
     # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
-    'default': env.db("DATABASE_URL", default="postgres://localhost/shopping_buddy"),
+    # 'default': env.db("DATABASE_URL", default="postgres://localhost/shopping_buddy"),
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'shop',
+        'USER': 'vagrant'
+    }
 }
 DATABASES['default']['ATOMIC_REQUESTS'] = True
 
