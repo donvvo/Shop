@@ -5,9 +5,16 @@ from django.core.urlresolvers import reverse
 from django.views.generic import DetailView, ListView, RedirectView, UpdateView
 
 from braces.views import LoginRequiredMixin
+from allauth.account.views import LoginView
 
 from .forms import UserForm
 from .models import User
+
+
+class UserLoginView(LoginView):
+    def form_valid(self, form):
+        print 'Login hook'
+        return super(UserLoginView, self).form_valid(form)
 
 
 class UserDetailView(LoginRequiredMixin, DetailView):
