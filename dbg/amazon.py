@@ -49,8 +49,8 @@ for item in result.Items.Item:
 
 # Create cart and add item to cart
 cartItem = {}
-cartItem["item_id"] = itemID
-cartItem["quantity"] = '1'
+cartItem[itemID] = 1
+#cartItem["quantity"] = '1'
 
 cartItems = {}
 cartItems['1'] = cartItem
@@ -59,30 +59,19 @@ cartItems['1'] = cartItem
 print cartItem
 print cartItems
 
-result = {}
-# TODO ListItemId
-if type(cartItem) == dict:
-    for no, (item_id, quantity) in enumerate(cartItem.items()):
-        print item_id
-        print quantity
-        result['Item.%i.%s' % (no+1, 'ASIN')] = item_id
-        result['Item.%i.Quantity' % (no+1)] = quantity
+cartResponse = api.cart_create(cartItem) #, OfferListingId=listID, Quantity='1')
 
-print result
+cartID = cartResponse.Cart.CartId
+hmac = cartResponse.Cart.HMAC
 
-exit()
+cItem = cartResponse.Cart.CartItems.CartItem
+pUrl = cartResponse.Cart.PurchaseURL
 
-cartResponse = api.cart_create(cartItem, OfferListingId=listID, Quantity='1')
-
-#cartResposne = api.call(Operation='CartCreate', Item1=listID, Item1Quantity=1)
-
-cartID = cartResponse.CartId
-hmac = cartResponse.HMAC
 
 print cartID
 print hmac
-print cartResponse.Amount
-
+print pUrl
+print cItem.Title
 
 #print '--------------------------------------------------'
 #
