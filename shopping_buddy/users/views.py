@@ -9,13 +9,14 @@ from allauth.account.views import LoginView
 
 from .forms import UserForm
 from .models import User
-from .utils import get_facebook_friends
+from .utils import update_user_friends_list
 
 
 class UserLoginView(LoginView):
+    template_name = "users/user_login.html"
+
     def form_valid(self, form):
         print 'Login hook'
-        get_facebook_friends
         return super(UserLoginView, self).form_valid(form)
 
 
@@ -24,6 +25,11 @@ class UserDetailView(LoginRequiredMixin, DetailView):
     # These next two lines tell the view to index lookups by username
     slug_field = "username"
     slug_url_kwarg = "username"
+
+    def get_context_data(self, **kwargs):
+        context = super(UserDetailView, self).get_context_data(**kwargs)
+        print update_user_friends_list(self.request).all()
+        return context
 
 
 class UserRedirectView(LoginRequiredMixin, RedirectView):

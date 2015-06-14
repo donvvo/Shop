@@ -9,6 +9,8 @@ urlpatterns = [
     # URL pattern for the UserListView
     url(regex=r'^$', view=views.UserListView.as_view(), name='list'),
 
+    url(regex=r'^login/$', view=views.UserLoginView.as_view(), name='login'),
+
     # URL pattern for the UserRedirectView
     url(regex=r'^~redirect/$', view=views.UserRedirectView.as_view(), name='redirect'),
 

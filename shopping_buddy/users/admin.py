@@ -31,3 +31,15 @@ class MyUserCreationForm(UserCreationForm):
 class UserAdmin(AuthUserAdmin):
     form = MyUserChangeForm
     add_form = MyUserCreationForm
+
+    # Change fieldssets to include all the user info
+    fieldsets_new = list(AuthUserAdmin.fieldsets)
+    fieldsets_new[1] = ('Personal info', {
+                        'fields': (
+                                   'first_name',
+                                   'last_name',
+                                   'email',
+                                   'friends')})
+
+    fieldsets = fieldsets_new
+    filter_horizontal = ('friends',)

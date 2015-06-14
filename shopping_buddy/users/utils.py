@@ -1,19 +1,36 @@
 import facebook
+
+from allauth.socialaccount.models import SocialAccount, SocialToken
+
 from wishlist.models import WishList
 
 
-def get_facebook_friends(self):
-    token = 'CAALeU6fTEH0BAIkZAGuhGLJpb6vfFWcScasank4cQbDFxqHZBK3ND8ZCRiAW7vFvSPPMnyMj1ZANc4RZAPqQZAzK3bZBUWYE5o3ueZAWAVGAk4XY1T4vjFX2ZCrZBeCteF7fLkLLZCNJRRADeQi501SW8EioaAA3CIkZApoowxle45GtaUfXQmAHwjf4Oy8t2SZATLATZAHiLiExXdwJ9NluUOBIkv4Q35uGBeGZBgZD'
+def get_facebook_friends(request):
+    social_account = SocialAccount.objects.get(user=request.user)
+    social_token = SocialToken.objects.get(account=social_account)
 
+    token = social_token
     graph = facebook.GraphAPI(token)
     friends = graph.get_connections("me", "friends")
 
     id_list = [friend['id'] for friend in friends['data']]
 
-    print id_list
+    return id_list
 
-    for friend in friends['data']:
-        print friend
+
+def facebook_id_to_users(id_list):
+    social_accounts = SocialAccount.objects.filter(uid__in=id_list)
+    print social_accounts
+    return [social_account.user for social_account in social_accounts]
+
+
+def update_user_friends_list(request):
+    id_list = get_facebook_friends(request)
+    user_friends = facebook_id_to_users(id_list)
+    for friend in user_friends:
+        if friend not in request.user.friends.all():
+            request.user.friends.add(friend)
+    return request.user.friends
 
 
 def get_friends_wishlist(self):
