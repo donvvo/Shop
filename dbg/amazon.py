@@ -7,6 +7,7 @@ api = API(locale='us')
 items = api.item_search('Books', Keywords="O'Reilly", ResponseGroup='ItemAttributes')
 
 itemID = 0
+cnt = 0
 
 for book in items:
 
@@ -25,13 +26,17 @@ for book in items:
     except AttributeError:
         print "No LargeImage.URL"
 
-    try:
-        print book.ASIN
-        itemID = book.ASIN
-    except AttributeError:
-        print "No ASIN"
+    if (cnt == 0):
+        try:
+            print book.ASIN
+            itemID = book.ASIN
+        except AttributeError:
+            print "No ASIN"
 
-    break;
+        cnt=1
+    else:
+        itemID2 = book.ASIN
+        break;
 
 # Grab item price and listing ID
 ID = str(itemID)
@@ -50,14 +55,8 @@ for item in result.Items.Item:
 # Create cart and add item to cart
 cartItem = {}
 cartItem[itemID] = 1
-#cartItem["quantity"] = '1'
-
-cartItems = {}
-cartItems['1'] = cartItem
-
 
 print cartItem
-print cartItems
 
 cartResponse = api.cart_create(cartItem) #, OfferListingId=listID, Quantity='1')
 
@@ -72,6 +71,18 @@ print cartID
 print hmac
 print pUrl
 print cItem.Title
+
+# Add item to cart
+cartItem2 = {}
+cartItem2[itemID2] = 1
+
+cartResponse = api.cart_add(cartID, hmac, cartItem2)
+
+cItem2 = cartResponse.Cart.CartItems.CartItem
+pUrl2  = cartResponse.Cart.PurchaseURL
+
+print cItem2.Title
+print pUrl2
 
 #print '--------------------------------------------------'
 #
