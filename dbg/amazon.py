@@ -1,45 +1,48 @@
 from amazonproduct import API
+import sys
 
 # Initialize API
 api = API(locale='us')
 
-# Search amazon for item
-items = api.item_search('Books', Keywords="O'Reilly", ResponseGroup='ItemAttributes')
+api.associate_tag = 'shopbudd0b'
+api.access_key = 'AKIAJHBGXANWUK4TKCSA'
+api.secret_key = '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'
 
-itemID = 0
+# Search amazon for item
+items = api.item_search('Blended', Keywords="apple", ResponseGroup='ItemAttributes')
+
+itemID = []
+price = []
 cnt = 0
 
 for book in items:
+    valid = True
 
     try: 
-        print book.ItemAttributes.Author
+        title = book.ItemAttributes.Title
+
+        #title = title.encode('utf-8').strip()
+        print title
+
+        #print book.ItemAttributes.LargeImage.URL
+        itemID.append(book.ASIN)
     except AttributeError:
-        print "No Author"
+        valid = False
+        print "issue"
+    except UnicodeEncodeError:
+        title = str(book.ItemAttributes.Title)
+        title = title.decode()
+        print title.encode('utf-8').strip()
+        valid = False
 
-    try: 
-        print book.ItemAttributes.Title
-    except AttributeError:
-        print "No Title"
+    if (valid):
+        cnt = cnt + 1
 
-    try:
-        print book.ItemAttributes.LargeImage.URL
-    except AttributeError:
-        print "No LargeImage.URL"
-
-    if (cnt == 0):
-        try:
-            print book.ASIN
-            itemID = book.ASIN
-        except AttributeError:
-            print "No ASIN"
-
-        cnt=1
-    else:
-        itemID2 = book.ASIN
+    if (cnt == 10):
         break;
 
 # Grab item price and listing ID
-ID = str(itemID)
+ID = str(itemID[0])
 print ID
 
 listID = ""
