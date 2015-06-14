@@ -2,10 +2,9 @@
 	background: white;
 }
 
-
-
-
-
+.bg-gray {
+	background: #2b2d2e;
+}
 
 
 
@@ -14,7 +13,7 @@
 }
 .box-item {
 	width: 100%;
-	height: 200px;
+	height: 180px;
   position: relative;
   background: 50% 50% no-repeat;
   -webkit-background-size: cover;
@@ -25,7 +24,21 @@
 }
 .header-item {
 	width: 100%;
-	height: 250px;
+	height: 380px;
+  position: relative;
+  background: 50% 50% no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; 
+  padding-left: 10%;
+  padding-top: 100px;
+  padding-bottom: 50px; 
+}
+
+.img-md {
+	width: 100%;
+	height: 150px;
   position: relative;
   background: 50% 50% no-repeat;
   -webkit-background-size: cover;
@@ -46,13 +59,19 @@ select {
 .carousel {
 	background: white;
 }
-.carousel#header-carousel .box-item {
-	padding-top: 30px;
-	padding-bottom: 70px;
-	padding-left: 10vh;
+.carousel#header-carousel {
+	padding: 0;
 }
-.carousel#header-carousel .box-item h3, .carousel#header-carousel .box-item p {
-	color: white;
+
+.carousel#header-carousel .header-item h3 {
+	font-size: 70px;
+}
+.carousel#header-carousel .header-item h3, .carousel#header-carousel .header-item p {
+	color: rgba(0,0,0,0.90);
+}
+
+.carousel-inner>.item {
+  margin-top: -30px;
 }
 
 /******* texts *********/
@@ -89,6 +108,7 @@ hr {
 
 
 /********* navbar ***********/
+
 .navbar .nav li {
 	border-left: 1px solid #dce0e0;
 }
@@ -154,7 +174,7 @@ html { height: 100%;}
 
 #page-content-wrapper {
     width: 100%;
-    padding-top: 70px;
+    padding-top: 60px;
 }
 
 #wrapper.toggled #page-content-wrapper {
@@ -275,7 +295,7 @@ html { height: 100%;}
 
 .hamburger {
   position: fixed;
-  top: 20px;  
+  top: 15px;  
   z-index: 99999;
   display: block;
   width: 32px;
@@ -322,7 +342,7 @@ html { height: 100%;}
 .hamburger.is-closed .hamb-top,
 .hamburger.is-closed .hamb-middle,
 .hamburger.is-closed .hamb-bottom {
-  background-color: #1a1a1a;
+  background-color: #dce0e0;
 }
 .hamburger.is-closed .hamb-top { 
   top: 5px; 

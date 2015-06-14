@@ -369,7 +369,7 @@ body {
    position: relative;
   }
 a {
-  color: #16a085;
+  color: #ff5a5f;
   text-decoration: none;
   -webkit-transition: .25s;
           transition: .25s;
@@ -785,7 +785,7 @@ fieldset[disabled] .btn-default.active {
   }
 .btn-primary {
   color: #fff;
-  background-color: #1abc9c;
+  background-color: #ff5a5f;
   }
 .btn-primary:hover,
 .btn-primary.hover,
@@ -830,7 +830,7 @@ fieldset[disabled] .btn-primary.active {
   }
 .btn-info {
   color: #fff;
-  background-color: #3498db;
+  background-color: #007a87;
   }
 .btn-info:hover,
 .btn-info.hover,
@@ -6304,7 +6304,7 @@ fieldset[disabled] .navbar-inverse .navbar-btn.active {
     }
   }
 .navbar-lg {
-  min-height: 76px;
+  min-height: 50px;
   }
 .navbar-lg .navbar-brand {
   height: 76px;
@@ -6577,6 +6577,7 @@ fieldset[disabled] .navbar-inverse .navbar-btn.active {
   font-size: 15px;
   font-weight: 700;
   line-height: 1.55;
+  border-radius: 0;
   background-color: white;
   }
 .breadcrumb > li {
@@ -7211,7 +7212,7 @@ fieldset[disabled] .navbar-inverse .navbar-btn.active {
   width: 8px;
   height: 8px;
   margin: 0 0 0 6px;
-  background-color: #fff;
+  background-color: #ff5a5f;
   }
 .carousel-caption {
   right: 0;
