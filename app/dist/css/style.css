@@ -105,6 +105,10 @@ hr {
 	padding: 0;
 }
 
+.wide {
+	width: 100%;
+}
+
 
 
 /********* navbar ***********/
@@ -455,8 +459,6 @@ html { height: 100%;}
     }
 }
 
-
-
 /********* list *********/
 
 .list-item {
@@ -474,4 +476,11 @@ html { height: 100%;}
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+ }
+ 
+ 
+ /********** sidebar ***********/
+ .sidebar .sidebar-item {
+	padding-top: 8px;
+	padding-bottom: 8px;	 
  }

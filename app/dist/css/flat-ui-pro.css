@@ -7675,9 +7675,9 @@ fieldset[disabled] .navbar-inverse .navbar-btn.active {
   }
 .panel {
   margin-bottom: 30px;
-  background-color: #fff;
-  border: 2px solid transparent;
-  border-radius: 6px;
+  background-color: transparent;
+  border: none;
+  border-radius: 2px;
   box-shadow: none;
   }
 .panel-heading {
